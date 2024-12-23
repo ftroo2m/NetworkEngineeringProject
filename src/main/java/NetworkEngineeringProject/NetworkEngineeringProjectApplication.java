@@ -5,7 +5,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("NetworkEngineeringProject.mapper")
 public class NetworkEngineeringProjectApplication {
 
     public static void main(String[] args) {

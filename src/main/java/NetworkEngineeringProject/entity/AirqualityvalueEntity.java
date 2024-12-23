@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import java.util.Date;
+
 /**
  * <p>
  * 
@@ -24,5 +26,5 @@ public class AirqualityvalueEntity {
     private String time;
 
     @TableField("`value`")
-    private Integer value;
+    private double value;
 }

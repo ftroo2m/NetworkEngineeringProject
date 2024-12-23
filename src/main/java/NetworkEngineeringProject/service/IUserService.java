@@ -1,6 +1,6 @@
 package NetworkEngineeringProject.service;
 
-import NetworkEngineeringProject.entity.AirqualityvalueEntity;
+import NetworkEngineeringProject.entity.UserEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author zk
  * @since 2024-12-20 16:29:41
  */
-public interface IAirqualityvalueService extends IService<AirqualityvalueEntity> {
+public interface IUserService extends IService<UserEntity> {
 
 }

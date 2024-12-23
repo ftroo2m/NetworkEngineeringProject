@@ -17,13 +17,13 @@ public class Mqtt {
     @PostConstruct
     public void init() {
         int qos = 1;
-        String broker = "tcp://dashboard.kindsof.xyz:1882";
+        String broker = "tcp://mqtt.kindsof.xyz:1882";
         String clientId = "JavaService";
         MemoryPersistence persistence = new MemoryPersistence();
-        String subTopic = "test/topic";
-        String pubTopic = "test/topic";
+        String subTopic = "sensor_mq2";
+        String pubTopic = "sensor_mq2";
         try {
-            MqttClient client = new MqttClient(broker, clientId, persistence);
+            mqttClient = new MqttClient(broker, clientId, persistence);
 
             // MQTT 连接选项
             MqttConnectOptions connOpts = new MqttConnectOptions();
@@ -33,28 +33,25 @@ public class Mqtt {
             connOpts.setCleanSession(true);
 
             // 设置回调
-            client.setCallback(onMessageCallback);
+            mqttClient.setCallback(onMessageCallback);
 
             // 建立连接
             System.out.println("Connecting to broker: " + broker);
-            client.connect(connOpts);
+            mqttClient.connect(connOpts);
 
             System.out.println("Connected");
 
             // 订阅
-            client.subscribe(subTopic);
+            mqttClient.subscribe(subTopic);
 
-            // 消息发布所需参数
-            /*MqttMessage message = new MqttMessage(content.getBytes());
-            message.setQos(qos);
-            client.publish(pubTopic, message);
-            System.out.println("Message published");
+            // 发布消息 (如果需要)
+            // MqttMessage message = new MqttMessage(content.getBytes());
+            // message.setQos(qos);
+            // mqttClient.publish(pubTopic, message);
+            // System.out.println("Message published");
 
-            client.disconnect();
-            System.out.println("Disconnected");
-            client.close();*/
+
         } catch (MqttException me) {
-            System.out.println("reason " + me.getReasonCode());
             System.out.println("msg " + me.getMessage());
             System.out.println("loc " + me.getLocalizedMessage());
             System.out.println("cause " + me.getCause());

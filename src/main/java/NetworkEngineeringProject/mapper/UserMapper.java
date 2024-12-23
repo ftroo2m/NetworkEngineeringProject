@@ -1,6 +1,6 @@
 package NetworkEngineeringProject.mapper;
 
-import NetworkEngineeringProject.entity.AirqualityvalueEntity;
+import NetworkEngineeringProject.entity.UserEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,6 +13,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2024-12-20 16:29:41
  */
 @Mapper
-public interface AirqualityvalueMapper extends BaseMapper<AirqualityvalueEntity> {
+public interface UserMapper extends BaseMapper<UserEntity> {
 
 }

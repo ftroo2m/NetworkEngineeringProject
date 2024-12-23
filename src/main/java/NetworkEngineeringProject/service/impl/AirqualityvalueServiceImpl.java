@@ -12,14 +12,9 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author zk
- * @since 2024-11-18 22:41:23
+ * @since 2024-12-20 16:29:41
  */
 @Service
 public class AirqualityvalueServiceImpl extends ServiceImpl<AirqualityvalueMapper, AirqualityvalueEntity> implements IAirqualityvalueService {
-    public void insertValue(String time,int value){
-        AirqualityvalueEntity airqualityvalueEntity = new AirqualityvalueEntity();
-        airqualityvalueEntity.setTime(time);
-        airqualityvalueEntity.setValue(value);
-        this.save(airqualityvalueEntity);
-    }
+
 }

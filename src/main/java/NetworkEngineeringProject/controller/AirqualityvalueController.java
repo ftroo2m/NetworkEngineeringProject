@@ -4,8 +4,6 @@ import NetworkEngineeringProject.entity.AirqualityvalueEntity;
 import NetworkEngineeringProject.service.IAirqualityvalueService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import static NetworkEngineeringProject.util.util.gson;
 
@@ -18,31 +16,24 @@ import static NetworkEngineeringProject.util.util.gson;
  * @since 2024-11-18 22:41:23
  */
 @RestController
-@RequestMapping("/airqualityvalue-entity")
+@RequestMapping("/api/airqualityvalue")
 public class AirqualityvalueController {
 
     @Autowired
     IAirqualityvalueService airqualityvalueService;
 
-    @PostMapping
+    @PostMapping("/realtime")
     @ResponseBody
-    public ResponseEntity<String> postAllAirQualityValues(@RequestBody String jsonPayload) {
-        try {
-            AirqualityvalueEntity airqualityvalueEntity = gson.fromJson(jsonPayload, AirqualityvalueEntity.class);
-
-            // 打印解析后的对象
-            System.out.println(airqualityvalueEntity);
-
-            // 保存实体
-            airqualityvalueService.save(airqualityvalueEntity);
-
-            System.out.println("Post Success");
-
-            return ResponseEntity.ok("Data saved successfully");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid JSON payload");
-        }
+    public String postAllAirQualityValues() {
+        QueryWrapper<AirqualityvalueEntity> queryWrapper = new QueryWrapper<>();
+        // 将时间字符串转换为日期时间格式，并按降序排序
+        queryWrapper.orderByDesc("STR_TO_DATE(time, '%Y-%m-%d %H:%i:%s')");
+        // 添加LIMIT子句以限制结果数量为1
+        queryWrapper.last("LIMIT 1");
+        // 使用selectOne方法获取单条记录
+        AirqualityvalueEntity result = airqualityvalueService.getBaseMapper().selectOne(queryWrapper);
+        // 将结果转换为JSON字符串并返回
+        return gson.toJson(result);
     }
 
     @GetMapping

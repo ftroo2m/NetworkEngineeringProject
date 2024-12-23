@@ -21,7 +21,7 @@ import java.util.Collections;
 
 public class CodeGenerator {
     // 数据库连接字段配置
-    private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&zeroDateTimeBehavior=CONVERT_TO_NULL";
+    private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/airquality?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&zeroDateTimeBehavior=CONVERT_TO_NULL";
     private static final String JDBC_USER_NAME = "root";
     private static final String JDBC_PASSWORD = "0987654321";
 
@@ -29,7 +29,7 @@ public class CodeGenerator {
     private static final String PACKAGE_NAME = "NetworkEngineeringProject";
 
     // 表名,多个表使用英文逗号分割
-    private static final String[] TBL_NAMES = {"airqualityvalue"};
+    private static final String[] TBL_NAMES = {"airqualityvalue","user"};
 
     // 表名的前缀,从表生成代码时会去掉前缀
     private static final String TABLE_PREFIX = "";
@@ -126,7 +126,6 @@ public class CodeGenerator {
                         .enableChainModel() // 开启实体类链式编程
                         .formatFileName("%sEntity") // 实体名称格式化为XXXEntity   formatFileName("%sEntity")
                         .enableTableFieldAnnotation()
-                        .enableFileOverride()
 
         );
 
